@@ -1,4 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import contentItems from './data/pyqs.js';
 import SearchBar from './components/SearchBar.jsx';
 import ContentList from './components/ContentList.jsx';
@@ -73,6 +74,24 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // read query params to set filters when navigating from other pages
+  const location = useLocation();
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const branchParam = params.get('branch');
+    const subjectParam = params.get('subject');
+
+    if (branchParam) setFilterBranch(branchParam);
+    if (subjectParam) {
+      // set topic to the first matching topic for the subject
+      const item = contentItems.find(i => i.subject === subjectParam);
+      if (item) {
+        setFilterTopic(item.topic || 'All');
+        setSelectedId(item.id);
+      }
+    }
+  }, [location.search]);
 
   return (
     <div className="app-shell">
