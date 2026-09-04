@@ -164,17 +164,327 @@ const contentItems = [
     content: 'Key concepts:\n• Polymorphism: Compile-time (Method Overloading) vs Runtime (Method Overriding using virtual functions in C++ or dynamic method dispatch in Java).\n• Abstract Classes vs Interfaces.\n• Diamond problem resolution in C++ via virtual base classes.',
     notes: 'Practice writing clean class hierarchies and SOLID principles (Single Responsibility, Open/Closed, Liskov Substitution).'
   },
+  // --- Jharkhand University of Technology (JUT) Ranchi - DBMS Previous Year Question Papers ---
   {
-    id: 'dbms-2023-normalization',
-    title: 'Database Management Systems - Normalization & Transactions',
+    id: 'jut-dbms-2024',
+    title: 'DBMS - JUT Ranchi 4th Sem B.Tech. Examination 2024 (Official Paper)',
     subject: 'DBMS',
-    topic: 'Normalization',
+    topic: 'JUT 2024 Exam Paper (Code: IT-401)',
+    year: '2024',
+    semester: 4,
+    type: 'PYQ',
+    branch: 'Computer Science',
+    content: `JHARKHAND UNIVERSITY OF TECHNOLOGY, RANCHI
+4th Semester B.Tech. Examination, 2024
+Subject: Database Management Systems | Subject Code: IT-401 | Branch: CSE / IT
+Time Allowed: 3 Hours | Full Marks: 70
+Candidates are required to give their answers in their own words as far as possible.
+(Question No. 1 is compulsory. Answer any five questions in total. Figures in margin indicate marks.)
+
+================================================================================
+1. Objective Type Questions (2 × 7 = 14 Marks)
+================================================================================
+(i) A collection of interrelated records is called a:
+    (a) Database               (b) Spread sheet
+    (c) Application Program    (d) Management information system
+    [Answer: (a) Database]
+
+(ii) What is the full form of DBMS?
+    (a) Data of Binary Management System
+    (b) Database Management System
+    (c) Database Management Service
+    (d) All of these
+    [Answer: (b) Database Management System]
+
+(iii) Which of the following is not a type of database?
+    (a) Hierarchical           (b) Network
+    (c) Distributed            (d) Decentralized
+    [Answer: (d) Decentralized]
+
+(iv) The minimal set of super key is called:
+    (a) Primary key            (b) Secondary key
+    (c) Candidate key          (d) Foreign key
+    [Answer: (c) Candidate key]
+
+(v) A type of query that is placed within a WHERE or HAVING clause of another query is called:
+    (a) Super query            (b) Sub query
+    (c) Master query           (d) Multi-query
+    [Answer: (b) Sub query]
+
+(vi) Which command is used to remove a relation from SQL?
+    (a) Drop table             (b) Delete
+    (c) Purge                  (d) Remove
+    [Answer: (a) Drop table]
+
+(vii) Tables in second normal form (2NF):
+    (a) Eliminate all hidden dependencies
+    (b) Eliminate the possibility of insertion anomalies
+    (c) Have a composite key
+    (d) Have all non-key fields depend on the whole primary key
+    [Answer: (d) Have all non-key fields depend on the whole primary key]
+
+================================================================================
+Long Answer & Numerical Questions (Answer any four from remaining)
+================================================================================
+
+2. (a) List the advantages of DBMS. Define instances and schemas of a database. (9 Marks)
+   (b) List any five applications of DBMS in modern industries. (5 Marks)
+
+3. (a) Draw an Entity-Relationship (ER) diagram for a Library Management System with entities, attributes, and relationships. (7 Marks)
+   (b) What is an integrity constraint? Explain its enforcement by DBMS with illustrative examples (Domain, Entity, Referential integrity). (7 Marks)
+
+4. (a) Consider the following database schema to write nested queries in SQL: (9 Marks)
+       Supplier (id, name, city)
+       Parts (pno, pname, pdescription)
+       Supply (id, pno, cost)
+       (i) Find the names of the parts supplied by 'RamRaj'.
+       (ii) Find the names of the suppliers who supply 'Nuts'.
+       (iii) Find the cost of bolts being supplied by Nagpur suppliers.
+   (b) List the data types supported by SQL (VARCHAR, INT, DATE, FLOAT, etc.). (5 Marks)
+
+5. (a) Define Normalization and state three distinct advantages of normalization in relational database design. (5 Marks)
+   (b) Give concrete relation schemas and functional dependencies for the following normal forms: (9 Marks)
+       (i) 2NF but not in 3NF
+       (ii) 3NF but not in BCNF
+
+6. (a) Does the Two-Phase Locking (2PL) protocol ensure conflict serializability? Justify your answer with appropriate examples. (7 Marks)
+   (b) What is NULL? What is its importance? How are NULL values handled in relational operations and three-valued logic (3VL)? (7 Marks)
+
+7. (a) Define a Transaction. List and explain the ACID properties of transactions (Atomicity, Consistency, Isolation, Durability). (7 Marks)
+   (b) Explain Deadlock in concurrent transactions with a suitable example and Wait-For-Graph (WFG). (7 Marks)
+
+8. Write short notes on any two of the following: (7 × 2 = 14 Marks)
+   (a) Data Dictionary
+   (b) Armstrong's Axioms (Reflexivity, Augmentation, Transitivity)
+   (c) Dynamic SQL vs Embedded SQL
+   (d) Serializability and Precedence Graph Testing`,
+    notes: `💡 JUT 2024 Exam Key Points & Model Solutions:
+• Q4 SQL Solutions:
+  (i) SELECT pname FROM Parts WHERE pno IN (SELECT pno FROM Supply WHERE id = (SELECT id FROM Supplier WHERE name = 'RamRaj'));
+  (ii) SELECT name FROM Supplier WHERE id IN (SELECT id FROM Supply WHERE pno = (SELECT pno FROM Parts WHERE pname = 'Nuts'));
+  (iii) SELECT cost FROM Supply WHERE pno = (SELECT pno FROM Parts WHERE pname = 'Bolts') AND id IN (SELECT id FROM Supplier WHERE city = 'Nagpur');
+• Q5 Normal Forms:
+  - 2NF but not 3NF: Transitive dependency exists (e.g., EmpID -> DeptID, DeptID -> DeptName).
+  - 3NF but not BCNF: Determinant is not a super key, but RHS is a prime attribute (e.g., Student, Subject -> Teacher; Teacher -> Subject).
+• Q6 2PL ensures Conflict Serializability because the growing and shrinking phases prevent cycles in the precedence serialization graph.`
+  },
+  {
+    id: 'jut-dbms-2023',
+    title: 'DBMS - JUT Ranchi 4th Sem B.Tech. Examination 2023 (Official Paper)',
+    subject: 'DBMS',
+    topic: 'JUT 2023 Exam Paper (Code: IT-401)',
     year: '2023',
     semester: 4,
     type: 'PYQ',
     branch: 'Computer Science',
-    content: 'Q1. Given relational schema R(A, B, C, D, E) with functional dependencies {A→BC, CD→E, B→D, E→A}, find all candidate keys.\n\nQ2. Decompose R into 3NF and check whether decomposition is lossless and dependency preserving.\n\nQ3. Explain ACID properties and Strict 2-Phase Locking (S2PL).',
-    notes: 'Progression checklist: 1NF (atomic values) → 2NF (no partial dependency) → 3NF (no transitive dependency) → BCNF (LHS must be super key).'
+    content: `JHARKHAND UNIVERSITY OF TECHNOLOGY, RANCHI
+4th Semester B.Tech. Examination, 2023
+Subject: Database Management Systems | Subject Code: IT-401 | Branch: CSE / IT
+Time Allowed: 3 Hours | Full Marks: 70
+Candidates are required to give their answers in their own words as far as possible.
+(Question No. 1 is compulsory. Answer any five questions in total.)
+
+================================================================================
+1. Objective Type Questions (2 × 7 = 14 Marks)
+================================================================================
+(i) Which of the following is Database Language?
+    (a) Data Definition Language (DDL)
+    (b) Data Manipulation Language (DML)
+    (c) Query Language (QL)
+    (d) All of these
+    [Answer: (d) All of these]
+
+(ii) Tables in second normal form (2NF):
+    (a) Eliminate all hidden dependencies
+    (b) Eliminate the possibility of insertion anomalies
+    (c) Have a composite key
+    (d) Have all non-key fields depend on the whole primary key
+    [Answer: (d) Have all non-key fields depend on the whole primary key]
+
+(iii) What does the data dictionary identify?
+    (a) Field formats          (b) Field types
+    (c) Field names            (d) All of these
+    [Answer: (d) All of these]
+
+(iv) The minimal set of super key is called:
+    (a) Primary key            (b) Secondary key
+    (c) Candidate key          (d) Foreign key
+    [Answer: (c) Candidate key]
+
+(v) A type of query that is placed within a WHERE or HAVING clause of another query is called:
+    (a) Super query            (b) Sub query
+    (c) Master query           (d) Multi-query
+    [Answer: (b) Sub query]
+
+(vi) An operation that will increase the length of a list is:
+    (a) Insert                 (b) Look-up
+    (c) Modify                 (d) None of these
+    [Answer: (a) Insert]
+
+(vii) Which command is used to remove an index from the database in SQL?
+    (a) DELETE INDEX           (b) DROP INDEX
+    (c) REMOVE INDEX           (d) ROLL BACK INDEX
+    [Answer: (b) DROP INDEX]
+
+================================================================================
+Long Answer & Numerical Questions
+================================================================================
+
+2. (a) How does DBMS provide data abstraction? Explain the concept of Physical and Logical Data Independence. (7 Marks)
+   (b) With a neat diagram, describe the overall system structure / 3-tier architecture of DBMS. (7 Marks)
+
+3. (a) Given a set of FDs for the relation schema R(A, B, C, D) with Primary Key AB, and:
+       D -> C or C -> D or AC -> D or AD -> C or BC -> D or BD -> C.
+       In which normal form is R? Explain. (7 Marks)
+   (b) What is Redundancy? Explain the anomalies (Insertion, Deletion, and Updation anomalies) in a relational database. (7 Marks)
+
+4. (a) Consider the following database schema to write nested queries in SQL: (9 Marks)
+       Supplier (id, name, city)
+       Parts (pno, pname, pdescription)
+       Supply (id, pno, cost)
+       (i) Find the names of the parts supplied by 'RamRaj'.
+       (ii) Find the names of the suppliers who supply 'Nuts'.
+       (iii) Find the cost of bolts being supplied by Nagpur suppliers.
+   (b) List and categorize the data types supported by SQL. (5 Marks)
+
+5. (a) What is Functional Dependency? Explain its use in database design. (5 Marks)
+   (b) Give relation schemas for: (i) 2NF but not in 3NF, (ii) 3NF but not in BCNF. (5 Marks)
+   (c) Describe different methods of defining indexes on multiple keys (composite index, clustering index). (4 Marks)
+
+6. (a) What is the need of lock in DBMS? Explain Shared Lock [S-lock] and Exclusive Lock [X-lock] with the help of an example and lock compatibility matrix. (9 Marks)
+   (b) Explain Strict Two-Phase Locking (Strict 2PL). (5 Marks)
+
+7. (a) What is database Recovery? Explain Shadow Paging in detail with its page table mechanism. (7 Marks)
+   (b) Explain read-only, write-only, and read-before-write protocols in serializability. (7 Marks)
+
+8. Write short notes on any two: (7 × 2 = 14 Marks)
+   (a) ACID Properties of Transactions
+   (b) Armstrong's Axioms of Functional Dependencies
+   (c) Data Independence (Logical vs Physical)
+   (d) Serializability & Conflict Equivalence`,
+    notes: `💡 JUT 2023 Exam Key Points & Model Solutions:
+• Data Independence:
+  - Logical Data Independence: Ability to change conceptual schema without changing external schema/views.
+  - Physical Data Independence: Ability to change internal physical storage/indexes without changing conceptual schema.
+• Shadow Paging:
+  - Maintains two page tables: Current Page Table and Shadow Page Table.
+  - On commit, current page table pointer replaces shadow page table pointer. Fast crash recovery without undo/redo logs.`
+  },
+  {
+    id: 'jut-dbms-2022',
+    title: 'DBMS - JUT Ranchi 4th Sem B.Tech. Examination 2022 (Official Paper)',
+    subject: 'DBMS',
+    topic: 'JUT 2022 Exam Paper (Code: IT-401)',
+    year: '2022',
+    semester: 4,
+    type: 'PYQ',
+    branch: 'Computer Science',
+    content: `JHARKHAND UNIVERSITY OF TECHNOLOGY, RANCHI
+4th Semester B.Tech. Examination, 2022
+Subject: Database Management Systems | Subject Code: IT-401 | Branch: CSE / IT
+Time Allowed: 3 Hours | Full Marks: 70
+Candidates are required to give their answers in their own words as far as possible.
+(Question No. 1 is mandatory. Answer any four questions from the rest.)
+
+================================================================================
+1. Choose the Most Appropriate Alternative (2 × 7 = 14 Marks)
+================================================================================
+(i) Relation R has eight attributes ABCDEFGH. Fields of R contain only atomic values.
+    F = {CH -> G, A -> BC, B -> CFH, E -> A, F -> EG} is a set of functional dependencies.
+    How many candidate keys does the relation R have?
+    (a) 3                      (b) 4
+    (c) 5                      (d) 6
+    [Answer: (b) 4 — Candidate keys are {AD}, {BD}, {ED}, {FD}]
+
+(ii) Any non-serial interleaving of T1 and T2 for concurrent execution leads to:
+    (a) a serializable schedule
+    (b) a schedule that is not conflict serializable
+    (c) a conflict serializable schedule
+    (d) a schedule for which a precedence graph cannot be drawn
+    [Answer: (a) or depends on conflict serializability testing]
+
+(iii) Which of the following command is used to delete a table in SQL?
+    (a) delete                 (b) truncate
+    (c) remove                 (d) drop
+    [Answer: (d) drop]
+
+(iv) Select operation in SQL is equivalent to:
+    (a) the selection operation in relational algebra
+    (b) the selection operation in relational algebra, except that select in SQL retains duplicates
+    (c) the projection operation in relational algebra
+    (d) the projection operation in relational algebra, except that select in SQL retains duplicates
+    [Answer: (d) the projection operation in relational algebra, except select in SQL retains duplicates]
+
+(v) In RDBMS, different classes of relations are created using which technique to prevent modification anomalies?
+    (a) Functional Dependencies
+    (b) Data Integrity
+    (c) Referential Integrity
+    (d) Normal Forms
+    [Answer: (d) Normal Forms]
+
+(vi) The information about data in a database is called:
+    (a) Metadata               (b) Tera data
+    (c) Hyper data             (d) None of these
+    [Answer: (a) Metadata]
+
+(vii) A normal form in which every determinant is a candidate key, is:
+    (a) 2NF                    (b) 3NF
+    (c) 4NF                    (d) BCNF
+    [Answer: (d) BCNF]
+
+================================================================================
+Long Answer & Numerical Questions
+================================================================================
+
+2. (a) How do application programs access a database? (Embedded SQL, JDBC, ODBC). (3 Marks)
+   (b) What are the responsibilities of a Database Administrator (DBA)? If we assume that the DBA is never interested in running his or her own queries, does the DBA still need to understand query optimization? Why? (5 Marks)
+   (c) Discuss different keys used in database design with examples: Super Key, Candidate Key, Primary Key, Alternate Key, and Foreign Key. (6 Marks)
+
+3. (a) Discuss the use of the Rename operation (ρ) in relational algebra. (2 Marks)
+   (b) Distinguish strong entity set with weak entity set. Draw an ER diagram to illustrate a weak entity set (e.g., Employee and Dependent). (5 Marks)
+   (c) Develop an ER-Diagram for a hospital with patients, medical doctors, and logs of tests and examinations conducted. (7 Marks)
+
+4. (a) Explain two aggregate functions of SQL (AVG, COUNT, MAX, MIN, SUM) with syntax and example. (4 Marks)
+   (b) Write SQL queries for following set of tables: (10 Marks)
+       EMPLOYEE (EmpNo, Name, DoB, Address, Gender, Salary, DNumber)
+       DEPARTMENT (DNumber, Dname, ManagerEmpNo, ManagerStartDate)
+       (i) Display the Age of 'male' employees:
+           SELECT Name, (strftime('%Y', 'now') - strftime('%Y', DoB)) AS Age FROM EMPLOYEE WHERE Gender = 'male';
+       (ii) Display all employees in Department named 'Marketing':
+           SELECT E.* FROM EMPLOYEE E JOIN DEPARTMENT D ON E.DNumber = D.DNumber WHERE D.Dname = 'Marketing';
+       (iii) Display the name of the highest salary paid 'female' employee:
+           SELECT Name FROM EMPLOYEE WHERE Gender = 'female' ORDER BY Salary DESC LIMIT 1;
+       (iv) Which employee is the oldest manager in the company?
+           SELECT E.Name FROM EMPLOYEE E JOIN DEPARTMENT D ON E.EmpNo = D.ManagerEmpNo ORDER BY E.DoB ASC LIMIT 1;
+       (v) Display the name of department of the employee 'SMITH':
+           SELECT D.Dname FROM DEPARTMENT D JOIN EMPLOYEE E ON D.DNumber = E.DNumber WHERE E.Name = 'SMITH';
+
+5. (a) Define Join. Explain different types of joins in relational algebra (Theta Join, Equi Join, Natural Join, Outer Joins). (6 Marks)
+   (b) Discuss the difference between Relational Algebra (procedural) and Relational Calculus (declarative). (4 Marks)
+   (c) Given a relation R with 5 attributes ABCDE and FDs: A -> B, BC -> E, and ED -> A. Is R in 3NF? Justify mathematically. (4 Marks)
+
+6. (a) Discuss the problems caused by redundancy and the purpose of normalization. (3 Marks)
+   (b) Define Transaction and explain the desirable ACID properties. (5 Marks)
+   (c) How to compute the closure of a set of functional dependencies (F+)? Explain 3NF & BCNF and write the differences between them. (6 Marks)
+
+7. (a) What is ACID property in database transaction processing? (4 Marks)
+   (b) Explain Concurrency control with locking methods (Shared and Exclusive locks). (5 Marks)
+   (c) Does the Two-Phase Locking (2PL) protocol ensure conflict serializability? Justify your answer with an appropriate example. (5 Marks)`,
+    notes: `💡 JUT 2022 Exam Key Points & Model Solutions:
+• Candidate Keys calculation for Q1(i):
+  Attributes not present on RHS of any FD must be in every candidate key: D.
+  Testing closures with D:
+  - {AD}+ = ABCDEFGH (Candidate Key 1)
+  - {BD}+ = ABCDEFGH (Candidate Key 2)
+  - {ED}+ = ABCDEFGH (Candidate Key 3)
+  - {FD}+ = ABCDEFGH (Candidate Key 4)
+  Hence, exactly 4 candidate keys.
+• Q5(c) 3NF Verification:
+  Candidate key for R(A,B,C,D,E) with FDs {A->B, BC->E, ED->A}:
+  - D is not on RHS, so D must be present.
+  - Closures: {ACD}+ = ABCDE, {BCD}+ = ABCDE, {ED}+ = ABCDE.
+  - Prime attributes: {A, B, C, D, E}.
+  - Since all attributes are prime attributes, any FD X -> Y satisfies the condition that Y is prime, hence R is in 3NF!`
   },
   {
     id: 'os-2023-process',

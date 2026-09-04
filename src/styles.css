@@ -767,6 +767,19 @@ h1 {
   transform: translateY(-1px);
 }
 
+.action-icon-btn.download-btn {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.action-icon-btn.download-btn:hover {
+  background: var(--accent-hover);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
 .action-icon-btn.bookmarked {
   background: #fef9c3;
   color: #854d0e;
