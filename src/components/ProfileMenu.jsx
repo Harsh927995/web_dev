@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { authAPI } from '../api/client.js';
 
 const BRANCHES = ['First Year', 'Computer Science', 'Civil', 'Electrical', 'Electronics and Communication', 'Mechanical'];
 const YEARS = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
@@ -27,7 +28,7 @@ function ProfileMenu({ isLoggedIn, user, onLogin, onLogout, onMenuToggle, showPr
     setLoginError('');
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     if (!formData.name.trim()) return setLoginError('Please enter your name');
     if (!formData.email.trim() || !formData.email.includes('@')) return setLoginError('Please enter a valid email');
@@ -35,6 +36,22 @@ function ProfileMenu({ isLoggedIn, user, onLogin, onLogout, onMenuToggle, showPr
     if (!formData.year) return setLoginError('Please select your year');
     if (formData.password.length < 6) return setLoginError('Password must be at least 6 characters');
 
+    try {
+      const res = await authAPI.register(formData);
+      if (res.success && res.user) {
+        localStorage.setItem('kk_active_user', JSON.stringify(res.user));
+        onLogin(res.user);
+        setFormData({ name: '', email: '', branch: '', year: '', password: '' });
+        setLoginError('');
+        return;
+      }
+    } catch (err) {
+      if (err.message !== 'BACKEND_OFFLINE') {
+        return setLoginError(err.message);
+      }
+    }
+
+    // Local fallback if backend is offline
     try {
       const storedUsers = JSON.parse(localStorage.getItem('kk_users') || '[]');
       const existingUser = storedUsers.find((u) => u.email.toLowerCase() === formData.email.toLowerCase());
@@ -65,11 +82,27 @@ function ProfileMenu({ isLoggedIn, user, onLogin, onLogout, onMenuToggle, showPr
     }
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email.trim()) return setLoginError('Please enter your email');
     if (!formData.password) return setLoginError('Please enter your password');
 
+    try {
+      const res = await authAPI.login({ email: formData.email, password: formData.password });
+      if (res.success && res.user) {
+        localStorage.setItem('kk_active_user', JSON.stringify(res.user));
+        onLogin(res.user);
+        setFormData({ name: '', email: '', branch: '', year: '', password: '' });
+        setLoginError('');
+        return;
+      }
+    } catch (err) {
+      if (err.message !== 'BACKEND_OFFLINE') {
+        return setLoginError(err.message);
+      }
+    }
+
+    // Local fallback if backend is offline
     const storedUsers = JSON.parse(localStorage.getItem('kk_users') || '[]');
     const matchedUser = storedUsers.find(
       (u) => u.email.toLowerCase() === formData.email.toLowerCase() && u.password === formData.password

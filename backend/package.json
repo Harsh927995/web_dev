@@ -1,0 +1,21 @@
+{
+  "name": "khoje-khatam-backend",
+  "version": "1.0.0",
+  "description": "REST API Backend for Khoje Khatam B.Tech Study Portal",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/seed/seedData.js"
+  },
+  "keywords": ["education", "engineering", "pyqs", "express", "backend"],
+  "author": "Khoje Khatam",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

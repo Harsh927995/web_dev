@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "node backend/src/server.js",
     "build": "vite build",
     "preview": "vite preview"
   },

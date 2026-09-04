@@ -8,6 +8,7 @@ import ProfileMenu from './components/ProfileMenu.jsx';
 import TermsAndConditions from './components/TermsAndConditions.jsx';
 import PrivacyPolicy from './components/PrivacyPolicy.jsx';
 import BranchFilter from './components/BranchFilter.jsx';
+import { authAPI, bookmarkAPI } from './api/client.js';
 
 const ALL_BRANCHES = ['All', 'First Year', ...Array.from(new Set(contentItems.map((item) => item.branch))).filter((b) => b !== 'All' && b !== 'First Year')];
 const ALL_TOPICS = ['All', ...new Set(contentItems.map((item) => item.topic))];
@@ -54,12 +55,32 @@ function App() {
     }
   });
 
+  // Fetch bookmarks from backend on login
+  useEffect(() => {
+    if (isLoggedIn) {
+      bookmarkAPI.getBookmarks().then((res) => {
+        if (res && Array.isArray(res.bookmarks)) {
+          setBookmarks(res.bookmarks);
+          localStorage.setItem('kk_bookmarks', JSON.stringify(res.bookmarks));
+        }
+      }).catch(() => {
+        // Fallback silently if offline
+      });
+    }
+  }, [isLoggedIn]);
+
   const toggleBookmark = (id) => {
     setBookmarks((prev) => {
       const next = prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id];
       localStorage.setItem('kk_bookmarks', JSON.stringify(next));
       return next;
     });
+
+    if (isLoggedIn) {
+      bookmarkAPI.toggleBookmark(id).catch(() => {
+        // Fallback silently if offline
+      });
+    }
   };
 
   // Modal states
@@ -97,6 +118,7 @@ function App() {
   };
 
   const handleLogout = () => {
+    authAPI.logout();
     localStorage.removeItem('kk_active_user');
     setUser(null);
     setIsLoggedIn(false);
