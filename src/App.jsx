@@ -9,6 +9,7 @@ import TermsAndConditions from './components/TermsAndConditions.jsx';
 import PrivacyPolicy from './components/PrivacyPolicy.jsx';
 import BranchFilter from './components/BranchFilter.jsx';
 import { authAPI, bookmarkAPI } from './api/client.js';
+import logoImg from './assets/logo.png';
 
 const ALL_BRANCHES = ['All', 'First Year', ...Array.from(new Set(contentItems.map((item) => item.branch))).filter((b) => b !== 'All' && b !== 'First Year')];
 const ALL_TOPICS = ['All', ...new Set(contentItems.map((item) => item.topic))];
@@ -158,7 +159,7 @@ function App() {
       <header className="app-header">
         <div className="header-content">
           <div className="logo-section">
-            <img src="/khoje-khatam-logo.png" alt="Khoje Khatam Logo" className="logo" />
+            <img src={logoImg} alt="Khoje Khatam Logo" className="logo" />
             <div>
               <p className="eyebrow">khoje khatam &bull; b.tech portal</p>
               <h1>Complete guide to PYQs, notes & tutorials</h1>

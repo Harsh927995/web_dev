@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams, Link } from 'react-router-dom';
 import contentItems, { branchCurriculum, branchTaglines, branchIcons } from '../data/pyqs.js';
+import logoImg from '../assets/logo.png';
 
 const semesterYearMapping = {
   1: '1st Year (Autumn)',
@@ -64,7 +65,7 @@ export default function BranchSubjects() {
       <header className="app-header branch-header">
         <div className="header-content">
           <Link to="/" className="logo-section">
-            <img src="/khoje-khatam-logo.png" alt="Khoje Khatam Logo" className="logo" />
+            <img src={logoImg} alt="Khoje Khatam Logo" className="logo" />
             <div>
               <p className="eyebrow">khoje khatam &bull; b.tech portal</p>
               <h1>Engineering Curriculum</h1>
