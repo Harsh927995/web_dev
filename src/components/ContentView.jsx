@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { generateResourcePDF } from '../utils/generatePdf.js';
 
 function ContentView({ item, isBookmarked, onToggleBookmark }) {
   const [copied, setCopied] = useState(false);
+  const [downloading, setDownloading] = useState(false);
 
   if (!item) return null;
 
@@ -20,33 +22,16 @@ function ContentView({ item, isBookmarked, onToggleBookmark }) {
     window.print();
   };
 
-  const handleDownload = () => {
-    const fileContent = `===============================================================
-${item.title.toUpperCase()}
-Subject: ${item.subject} | Branch: ${item.branch} | Semester: ${item.semester || 'N/A'} | Year: ${item.year}
-===============================================================
-
-${item.content}
-
-===============================================================
-EXAM TIPS & SOLUTIONS / NOTES:
-===============================================================
-${item.notes || 'No extra notes provided.'}
-
----------------------------------------------------------------
-Downloaded from Khoje Khatam Study Portal
-https://harsh927995.github.io/web_dev/
----------------------------------------------------------------`;
-
-    const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${item.id || 'question-paper'}.txt`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+  const handleDownloadPDF = async () => {
+    try {
+      setDownloading(true);
+      await generateResourcePDF(item);
+      setDownloading(false);
+    } catch (err) {
+      console.error('PDF generation error:', err);
+      setDownloading(false);
+      window.print();
+    }
   };
 
   return (
@@ -66,10 +51,11 @@ https://harsh927995.github.io/web_dev/
             <button 
               type="button" 
               className="action-icon-btn download-btn" 
-              onClick={handleDownload}
-              title="Download full question paper as file"
+              onClick={handleDownloadPDF}
+              disabled={downloading}
+              title="Download question paper directly as PDF"
             >
-              📥 Download
+              {downloading ? '⏳ Generating...' : '📥 Download PDF'}
             </button>
             <button 
               type="button" 
