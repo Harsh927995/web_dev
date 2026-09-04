@@ -7,23 +7,49 @@ function SearchBar({
   selectedYear,
   onTopicChange,
   onYearChange,
+  onResetFilters
 }) {
+  const hasActiveFilters = Boolean(value || selectedTopic !== 'All' || selectedYear !== 'All');
+
   return (
     <div className="search-bar">
-      <label>
-        Search
+      <div className="search-header">
+        <label htmlFor="search-input" className="search-title">🔍 Search & Filter</label>
+        {hasActiveFilters && (
+          <button 
+            type="button" 
+            className="reset-filters-btn" 
+            onClick={() => {
+              onChange('');
+              onTopicChange('All');
+              onYearChange('All');
+              if (onResetFilters) onResetFilters();
+            }}
+          >
+            Reset
+          </button>
+        )}
+      </div>
+
+      <div className="search-input-wrapper">
         <input
+          id="search-input"
           type="search"
-          placeholder="Search PYQs or notes..."
+          placeholder="Search topics, questions, formulas..."
           value={value}
           onChange={(event) => onChange(event.target.value)}
+          aria-label="Search PYQs and study notes"
         />
-      </label>
+      </div>
 
       <div className="filters-row">
         <label>
-          Topic
-          <select value={selectedTopic} onChange={(event) => onTopicChange(event.target.value)}>
+          <span>Topic</span>
+          <select 
+            value={selectedTopic} 
+            onChange={(event) => onTopicChange(event.target.value)}
+            aria-label="Filter by topic"
+          >
             {topics.map((topic) => (
               <option key={topic} value={topic}>
                 {topic}
@@ -32,16 +58,20 @@ function SearchBar({
           </select>
         </label>
 
-        {/* <label>
-          Year
-          <select value={selectedYear} onChange={(event) => onYearChange(event.target.value)}>
+        <label>
+          <span>Year</span>
+          <select 
+            value={selectedYear} 
+            onChange={(event) => onYearChange(event.target.value)}
+            aria-label="Filter by year"
+          >
             {years.map((year) => (
               <option key={year} value={year}>
                 {year}
               </option>
             ))}
           </select>
-        </label> */}
+        </label>
       </div>
     </div>
   );
