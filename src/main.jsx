@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import App from './App.jsx';
 import BranchSubjects from './pages/BranchSubjects.jsx';
 import './styles.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/branch/:branch" element={<BranchSubjects />} />
         <Route path="*" element={<App />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   </React.StrictMode>
 );
