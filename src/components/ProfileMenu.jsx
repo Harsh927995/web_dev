@@ -10,6 +10,7 @@ function ProfileMenu({ isLoggedIn, user, onLogin, onLogout, onMenuToggle, showPr
   const [loginError, setLoginError] = useState('');
   const menuRef = useRef(null);
 
+<<<<<<< HEAD
   useEffect(() => {
     if (!showProfile) return;
     const handleClick = (e) => menuRef.current && !menuRef.current.contains(e.target) && onMenuToggle();
@@ -21,6 +22,17 @@ function ProfileMenu({ isLoggedIn, user, onLogin, onLogout, onMenuToggle, showPr
       document.removeEventListener('keydown', handleKey);
     };
   }, [showProfile, onMenuToggle]);
+=======
+  const branches = [
+    'Computer Science',
+    'Civil',
+    'Electrical',
+    'Electronics and Communication',
+    'Mechanical'
+  ];
+
+  const years = ['1st Year', '2nd Year', '3rd Year', '4th Year'];
+>>>>>>> b62ad1f (Update app UI and layout)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +42,7 @@ function ProfileMenu({ isLoggedIn, user, onLogin, onLogout, onMenuToggle, showPr
 
   const handleRegister = async (e) => {
     e.preventDefault();
+<<<<<<< HEAD
     if (!formData.name.trim()) return setLoginError('Please enter your name');
     if (!formData.email.trim() || !formData.email.includes('@')) return setLoginError('Please enter a valid email');
     if (!formData.branch) return setLoginError('Please select your branch');
@@ -80,6 +93,59 @@ function ProfileMenu({ isLoggedIn, user, onLogin, onLogout, onMenuToggle, showPr
     } catch {
       setLoginError('Failed to save account locally.');
     }
+=======
+    
+    // Validation
+    if (!formData.name.trim()) {
+      setLoginError('Please enter your name');
+      return;
+    }
+    if (!formData.email.trim()) {
+      setLoginError('Please enter an email');
+      return;
+    }
+    if (!formData.email.includes('@')) {
+      setLoginError('Please enter a valid email');
+      return;
+    }
+    if (!formData.branch) {
+      setLoginError('Please select a branch');
+      return;
+    }
+    if (!formData.year) {
+      setLoginError('Please select your year');
+      return;
+    }
+    if (!formData.password.trim()) {
+      setLoginError('Please enter a password');
+      return;
+    }
+    if (formData.password.length < 6) {
+      setLoginError('Password must be at least 6 characters');
+      return;
+    }
+    
+    setLoading(true);
+
+    // Create account locally without a backend API.
+    onLogin({
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      branch: formData.branch,
+      year: formData.year,
+      joinDate: new Date().toLocaleDateString()
+    });
+
+    setFormData({
+      name: '',
+      email: '',
+      branch: '',
+      year: '',
+      password: ''
+    });
+    setLoginError('');
+    setLoading(false);
+>>>>>>> b62ad1f (Update app UI and layout)
   };
 
   const handleLoginSubmit = async (e) => {

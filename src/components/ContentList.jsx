@@ -1,10 +1,13 @@
 function ContentList({ items, selectedId, onSelect, bookmarks = [] }) {
   return (
     <div className="content-list">
+<<<<<<< HEAD
       <div className="content-list-header">
         <h2>📚 Available Resources</h2>
         <span className="items-count-badge">{items.length} items</span>
       </div>
+=======
+>>>>>>> b62ad1f (Update app UI and layout)
       <div className="content-list-items">
         {items.length === 0 ? (
           <div className="empty-list">

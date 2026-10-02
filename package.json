@@ -9,13 +9,21 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "vite build",
+<<<<<<< HEAD
     "deploy": "node scripts/deploy.js"
+=======
+    "deploy": "gh-pages -d dist -a"
+>>>>>>> b62ad1f (Update app UI and layout)
   },
   "dependencies": {
     "jspdf": "^4.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+<<<<<<< HEAD
     "react-router-dom": "^6.14.1"
+=======
+    "react-router-dom": "^6.30.4"
+>>>>>>> b62ad1f (Update app UI and layout)
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",

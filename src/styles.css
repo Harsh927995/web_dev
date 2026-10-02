@@ -33,6 +33,7 @@
   --border: #1f293d;
   --border-hover: #374151;
   --accent: #3b82f6;
+<<<<<<< HEAD
   --accent-hover: #60a5fa;
   --accent-soft: #172554;
   --accent-text: #93c5fd;
@@ -41,6 +42,45 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 20px 35px -10px rgba(0, 0, 0, 0.5);
+=======
+  --accent-soft: #93c5fd;
+  --text: #102a43;
+  --muted: #627d98;
+  --input-bg: #ffffff;
+  --input-text: #052441;
+  --shadow: rgba(16, 42, 67, 0.08);
+  --cta-bg: #eff6ff;
+  --cta-border: #dbeafe;
+  --badge-soft: #dbeafe;
+  --badge-soft-2: #ede9fe;
+  --button-bg: #f1f5f9;
+  --button-bg-strong: #dbeafe;
+  --button-border: #cbd5e1;
+  --button-text: #102a43;
+}
+
+.app-shell[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #020817;
+  --surface: #0f172a;
+  --surface-soft: #111827;
+  --border: #334155;
+  --accent: #60a5fa;
+  --accent-soft: #93c5fd;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --input-bg: #0b1220;
+  --input-text: #e2e8f0;
+  --shadow: rgba(2, 6, 23, 0.7);
+  --cta-bg: #172033;
+  --cta-border: #334155;
+  --badge-soft: #1d4ed8;
+  --badge-soft-2: #6d28d9;
+  --button-bg: #111c2d;
+  --button-bg-strong: #1e3a8a;
+  --button-border: #475569;
+  --button-text: #f8fafc;
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 * {
@@ -60,7 +100,19 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
+<<<<<<< HEAD
 body, button, input, select, textarea {
+=======
+#root {
+  min-height: 100vh;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+>>>>>>> b62ad1f (Update app UI and layout)
   font: inherit;
 }
 
@@ -76,11 +128,19 @@ button {
 
 /* Base App Shell & Cards */
 .app-shell {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 100%;
   margin: 0;
   min-height: 100vh;
+<<<<<<< HEAD
   padding: 24px clamp(20px, 3.5vw, 64px);
+=======
+  padding: 24px;
+  background: var(--bg);
+  color: var(--text);
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 .about-section,
@@ -126,9 +186,33 @@ button {
 }
 
 .logo-section {
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
   gap: 18px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.theme-toggle {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
+  color: var(--button-text);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+.theme-toggle:hover {
+  background: var(--button-bg-strong);
 }
 
 .logo {
@@ -163,10 +247,27 @@ h1 {
   font-size: 0.92rem;
 }
 
+<<<<<<< HEAD
 .header-actions {
   display: flex;
   align-items: center;
   gap: 12px;
+=======
+.about-section,
+.quick-subjects,
+.branch-filter-section,
+.search-bar,
+.content-list,
+.content-panel,
+.profile-dropdown,
+.app-footer {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: 0 18px 38px rgba(16, 42, 67, 0.08);
+  margin-top: auto;
+  width: 100%;
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 .theme-toggle-btn {
@@ -264,9 +365,15 @@ h1 {
   display: flex;
   gap: 14px;
   align-items: flex-start;
+<<<<<<< HEAD
   padding: 16px 20px;
   background: var(--surface-soft);
   border-radius: var(--radius-md);
+=======
+  padding: 20px;
+  background: var(--surface-soft);
+  border-radius: 18px;
+>>>>>>> b62ad1f (Update app UI and layout)
   border: 1px solid var(--border);
 }
 
@@ -291,14 +398,99 @@ h1 {
 
 .about-cta {
   display: flex;
+<<<<<<< HEAD
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
+=======
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px;
+  background: var(--cta-bg);
+  border-radius: 18px;
+  border: 1px solid var(--cta-border);
+}
+
+.cta-text {
+  margin: 0;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 700;
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 .cta-button {
   padding: 12px 22px;
+<<<<<<< HEAD
   border-radius: var(--radius-md);
+=======
+  border-radius: 14px;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  background: #2563eb;
+}
+
+.quick-subjects {
+  margin-bottom: 32px;
+}
+
+.quick-subjects h3 {
+  margin: 0 0 18px;
+  color: var(--text);
+  font-size: 1.3rem;
+}
+
+.subject-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.subject-badge {
+  padding: 12px 18px;
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
+  border-radius: 999px;
+  color: var(--button-text);
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.subject-badge:hover {
+  transform: translateY(-1px);
+  background: var(--button-bg-strong);
+}
+
+.branch-filter-section {
+  margin-bottom: 32px;
+}
+
+.branch-filter-section h3 {
+  margin: 0 0 18px;
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.branch-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.branch-button {
+  padding: 14px 18px;
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
+  border-radius: 14px;
+  color: var(--button-text);
+>>>>>>> b62ad1f (Update app UI and layout)
   font-weight: 700;
   font-size: 0.95rem;
   display: inline-flex;
@@ -307,9 +499,24 @@ h1 {
   transition: all 0.2s ease;
 }
 
+<<<<<<< HEAD
 .cta-button.primary {
   background: var(--accent);
   color: #ffffff;
+=======
+.branch-button:hover,
+.branch-button.active {
+  background: var(--button-bg-strong);
+  border-color: var(--accent-soft);
+  color: var(--button-text);
+}
+
+.profile-button:hover,
+.subject-badge:hover,
+.year-btn:hover,
+.social-link:hover {
+  filter: brightness(1.08);
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 .cta-button.primary:hover {
@@ -421,17 +628,25 @@ h1 {
 /* Main Layout & Sidebar */
 .app-main {
   display: grid;
+<<<<<<< HEAD
   grid-template-columns: 340px 1fr;
   gap: 24px;
   margin-bottom: 32px;
+=======
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 .sidebar {
+  order: 1;
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
+<<<<<<< HEAD
 .active-filter-indicator {
   display: flex;
   align-items: center;
@@ -460,6 +675,36 @@ h1 {
 }
 
 /* Search Bar */
+=======
+.recent-subject-box {
+  min-height: 220px;
+  width: 100%;
+  border-radius: 22px;
+  border: 2px solid rgba(59, 130, 246, 0.8);
+  background: rgba(148, 163, 184, 0.08);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 18px 16px;
+  box-sizing: border-box;
+}
+
+.recent-subject-label {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.content-panel {
+  order: 2;
+}
+
+>>>>>>> b62ad1f (Update app UI and layout)
 .search-bar {
   padding: 22px;
   display: flex;
@@ -497,11 +742,20 @@ h1 {
 .search-input-wrapper input {
   width: 100%;
   padding: 12px 14px;
+<<<<<<< HEAD
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
   background: var(--surface-card);
   color: var(--text);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+=======
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--input-bg);
+  color: var(--input-text);
+  box-shadow: inset 0 1px 2px rgba(16, 42, 67, 0.08);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 .search-input-wrapper input:focus,
@@ -616,17 +870,34 @@ h1 {
 .content-item {
   width: 100%;
   text-align: left;
+<<<<<<< HEAD
   padding: 14px 16px;
   border-radius: var(--radius-md);
   background: var(--surface-soft);
   border: 1px solid var(--border);
   transition: all 0.15s ease;
+=======
+  padding: 18px;
+  border-radius: 18px;
+  background: var(--surface-soft);
+  border: 1px solid transparent;
+  transition: border 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.content-item:hover {
+  transform: translateY(-1px);
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 .content-item:hover,
 .content-item.active {
+<<<<<<< HEAD
   background: var(--accent-soft);
   border-color: var(--accent);
+=======
+  border-color: var(--accent-soft);
+  background: var(--cta-bg);
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 .content-item-header {
@@ -803,7 +1074,11 @@ h1 {
 .content-section {
   margin-top: 22px;
   padding: 22px;
+<<<<<<< HEAD
   border-radius: var(--radius-md);
+=======
+  border-radius: 18px;
+>>>>>>> b62ad1f (Update app UI and layout)
   background: var(--surface-soft);
   border: 1px solid var(--border);
 }
@@ -819,6 +1094,7 @@ h1 {
   margin: 0;
   white-space: pre-wrap;
   word-break: break-word;
+<<<<<<< HEAD
   background: var(--surface-card);
   padding: 18px;
   border-radius: var(--radius-sm);
@@ -826,6 +1102,12 @@ h1 {
   font-family: inherit;
   font-size: 0.98rem;
   line-height: 1.8;
+=======
+  background: var(--input-bg);
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+>>>>>>> b62ad1f (Update app UI and layout)
   color: var(--text);
 }
 
@@ -839,17 +1121,27 @@ h1 {
 .profile-menu-container {
   position: relative;
   display: inline-flex;
+  margin-left: auto;
 }
 
 .profile-button {
   display: inline-flex;
   align-items: center;
+<<<<<<< HEAD
   gap: 10px;
   padding: 10px 18px;
   border-radius: var(--radius-pill);
   background: var(--surface-soft);
   color: var(--text);
   border: 1px solid var(--border);
+=======
+  gap: 12px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--button-border);
+>>>>>>> b62ad1f (Update app UI and layout)
   font-weight: 700;
   font-size: 0.9rem;
   transition: all 0.2s ease;
@@ -1054,10 +1346,16 @@ h1 {
 
 .student-id-card {
   padding: 20px;
+<<<<<<< HEAD
   border-radius: var(--radius-md);
   background: linear-gradient(135deg, var(--surface-soft), var(--surface-card));
   border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
+=======
+  border-radius: 20px;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 .id-card-header {
@@ -1122,6 +1420,7 @@ h1 {
 }
 
 .id-detail-item {
+<<<<<<< HEAD
   padding: 10px 12px;
   border-radius: var(--radius-sm);
   background: var(--surface);
@@ -1130,6 +1429,12 @@ h1 {
 
 .id-full-width {
   grid-column: 1 / -1;
+=======
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--input-bg);
+  border: 1.5px solid var(--border);
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 .id-detail-label {
@@ -1324,7 +1629,49 @@ h1 {
   display: flex;
   align-items: center;
   gap: 8px;
+<<<<<<< HEAD
   font-size: 0.88rem;
+=======
+}
+
+.year-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.year-btn {
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
+  color: var(--button-text);
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.2s ease;
+  width: 100%;
+}
+
+.year-btn:hover {
+  transform: translateY(-1px);
+  background: var(--button-bg-strong);
+}
+
+.year-btn.active {
+  background: var(--button-bg-strong);
+  border-color: var(--accent-soft);
+}
+
+.error-message {
+  margin: 0;
+  padding: 12px;
+  border-radius: 14px;
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.guest-note {
+  margin: 0;
+>>>>>>> b62ad1f (Update app UI and layout)
   color: var(--muted);
 }
 
@@ -1467,17 +1814,29 @@ h1 {
   height: 38px;
   display: grid;
   place-items: center;
+<<<<<<< HEAD
   border-radius: var(--radius-sm);
   background: var(--surface-soft);
   border: 1px solid var(--border);
   color: var(--text);
   transition: all 0.2s ease;
+=======
+  border-radius: 14px;
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
+  color: var(--button-text);
+  transition: transform 0.2s ease, background 0.2s ease;
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 .social-link:hover {
   color: var(--accent);
   border-color: var(--accent);
   transform: translateY(-2px);
+<<<<<<< HEAD
+=======
+  background: var(--button-bg-strong);
+>>>>>>> b62ad1f (Update app UI and layout)
 }
 
 .newsletter-signup {
@@ -1622,6 +1981,30 @@ h1 {
   .app-main {
     grid-template-columns: 1fr;
   }
+<<<<<<< HEAD
+=======
+
+  .content-panel {
+    order: 1;
+  }
+
+  .sidebar {
+    order: 2;
+  }
+
+  .filters-row {
+    grid-template-columns: 1fr;
+  }
+
+  .branch-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .year-buttons {
+    grid-template-columns: 1fr;
+  }
+
+>>>>>>> b62ad1f (Update app UI and layout)
   .footer-content {
     grid-template-columns: 1fr 1fr;
   }
@@ -1646,6 +2029,7 @@ h1 {
   .branch-buttons {
     grid-template-columns: 1fr;
   }
+<<<<<<< HEAD
   .header-actions {
     width: 100%;
     justify-content: space-between;
@@ -1670,5 +2054,23 @@ h1 {
     border: none;
     box-shadow: none;
     padding: 0;
+=======
+
+  .logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .profile-dropdown {
+    width: auto;
+    right: 12px;
+    left: 12px;
+    transform: none;
+    top: auto;
+    position: fixed;
+    bottom: 0;
+    border-radius: 18px 18px 0 0;
+    max-height: 78vh;
+>>>>>>> b62ad1f (Update app UI and layout)
   }
 }

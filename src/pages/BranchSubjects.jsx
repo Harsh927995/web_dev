@@ -19,6 +19,7 @@ export default function BranchSubjects() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
+<<<<<<< HEAD
   // Selected semester: read initial from URL param or null
   const initialSem = searchParams.get('sem') ? Number(searchParams.get('sem')) : null;
   const [selectedSemester, setSelectedSemester] = useState(initialSem);
@@ -80,13 +81,112 @@ export default function BranchSubjects() {
               aria-label="Toggle visual theme"
             >
               {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+=======
+  const [selectedSemester, setSelectedSemester] = React.useState('');
+
+  const isFirstYearBranch = branch?.trim().toLowerCase() === 'first year';
+  if (isFirstYearBranch) {
+    return (
+      <div style={{ padding: 24 }}>
+        <h2>Branch not available</h2>
+        <p>This branch has been removed from the app.</p>
+        <div style={{ marginTop: 20 }}>
+          <button className="branch-button" onClick={() => navigate(-1)}>← Back</button>
+        </div>
+      </div>
+    );
+  }
+
+  const subjectsForBranch = contentItems.filter((i) => i.branch === branch);
+  const semesterOptions = Array.from(
+    new Set(
+      Array.from({ length: 8 }, (_, index) => String(index + 1)).concat(
+        subjectsForBranch.map((item) => item.semester).filter(Boolean)
+      )
+    )
+  ).sort((a, b) => Number(a) - Number(b));
+  const subjects = selectedSemester
+    ? Array.from(new Set(subjectsForBranch.filter((i) => i.semester === selectedSemester).map((i) => i.subject)))
+    : Array.from(new Set(subjectsForBranch.map((i) => i.subject)));
+
+  const handleSemesterClick = (semester) => {
+    setSelectedSemester(semester);
+  };
+
+  const hasSemesterFilters = semesterOptions.length > 0;
+  const showSemesterPrompt = hasSemesterFilters && !selectedSemester;
+
+  return (
+    <div style={{ padding: 24 }}>
+      <h2>Subjects for {branch}</h2>
+
+      {hasSemesterFilters ? (
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 20 }}>
+          {semesterOptions.map((semester) => (
+            <button
+              key={semester}
+              className={`branch-button ${selectedSemester === semester ? 'active' : ''}`}
+              onClick={() => handleSemesterClick(semester)}
+            >
+              Semester {semester}
+>>>>>>> b62ad1f (Update app UI and layout)
             </button>
             <button type="button" className="back-nav-button" onClick={() => navigate('/')}>
               ← Back to Home
             </button>
           </div>
         </div>
+<<<<<<< HEAD
       </header>
+=======
+      ) : null}
+
+      {showSemesterPrompt ? (
+        <p>Select a semester to view subjects.</p>
+      ) : null}
+
+      {hasSemesterFilters ? (
+        selectedSemester ? (
+          subjects.length === 0 ? (
+            <p>No subjects found for semester {selectedSemester}.</p>
+          ) : (
+            <div style={{ display: 'grid', gap: 12, marginTop: 12 }}>
+              {subjects.map((s) => (
+                <button
+                  key={s}
+                  className="subject-badge"
+                  onClick={() => {
+                    const params = new URLSearchParams({ subject: s, branch, semester: selectedSemester });
+                    navigate(`/?${params.toString()}`);
+                  }}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )
+        ) : null
+      ) : (
+        subjects.length === 0 ? (
+          <p>No subjects found for this branch.</p>
+        ) : (
+          <div style={{ display: 'grid', gap: 12, marginTop: 12 }}>
+            {subjects.map((s) => (
+              <button
+                key={s}
+                className="subject-badge"
+                onClick={() => {
+                  const params = new URLSearchParams({ subject: s, branch });
+                  navigate(`/?${params.toString()}`);
+                }}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        )
+      )}
+>>>>>>> b62ad1f (Update app UI and layout)
 
       <div className="branch-subjects-container">
         {/* Branch Title Banner */}

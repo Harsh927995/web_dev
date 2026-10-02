@@ -17,9 +17,14 @@ const ALL_YEARS = ['All', ...new Set(contentItems.map((item) => item.year))];
 const ALL_SUBJECTS = Array.from(new Set(contentItems.map((i) => i.subject)));
 
 function App() {
+  const logoPath = window.location.pathname.startsWith('/web_dev')
+    ? '/web_dev/khoje-khatam-logo.png.png'
+    : '/khoje-khatam-logo.png.png';
   const [search, setSearch] = useState('');
   const [selectedId, setSelectedId] = useState(contentItems[0]?.id || null);
   const [filterTopic, setFilterTopic] = useState('All');
+  const [filterSubject, setFilterSubject] = useState('All');
+  const [filterSemester, setFilterSemester] = useState('All');
   const [filterYear, setFilterYear] = useState('All');
   const [filterBranch, setFilterBranch] = useState('All');
   const [filterSemester, setFilterSemester] = useState('All');
@@ -87,6 +92,7 @@ function App() {
   // Modal states
   const [showTerms, setShowTerms] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
+<<<<<<< HEAD
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
 
@@ -110,8 +116,42 @@ function App() {
       return true;
     });
   }, [search, filterTopic, filterYear, filterBranch, filterSemester, showBookmarksOnly, bookmarks]);
+=======
+  const [isHeaderMinimized, setIsHeaderMinimized] = useState(false);
+  const [theme, setTheme] = useState('light');
 
-  const selectedItem = contentItems.find((item) => item.id === selectedId) || filteredItems[0] || null;
+  const visibleContentItems = useMemo(
+    () => contentItems.filter((item) => item.branch !== 'First Year'),
+    []
+  );
+
+  const branches = useMemo(
+    () => ['All', ...new Set(visibleContentItems.map((item) => item.branch))],
+    [visibleContentItems]
+  );
+  const topics = useMemo(() => ['All', ...new Set(visibleContentItems.map((item) => item.topic))], [visibleContentItems]);
+  const years = useMemo(() => ['All', ...new Set(visibleContentItems.map((item) => item.year))], [visibleContentItems]);
+
+  const filteredItems = useMemo(() => {
+    return visibleContentItems.filter((item) => {
+      const matchesSearch = [item.title, item.subject, item.content, item.notes]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase()
+        .includes(search.toLowerCase());
+
+      const matchesSubject = filterSubject === 'All' || item.subject === filterSubject;
+      const matchesSemester = filterSemester === 'All' || item.semester === filterSemester;
+      const matchesTopic = filterTopic === 'All' || item.topic === filterTopic;
+      const matchesYear = filterYear === 'All' || item.year === filterYear;
+      const matchesBranch = filterBranch === 'All' || item.branch === filterBranch;
+
+      return matchesSearch && matchesSubject && matchesSemester && matchesTopic && matchesYear && matchesBranch;
+    });
+  }, [search, filterSubject, filterSemester, filterTopic, filterYear, filterBranch, visibleContentItems]);
+>>>>>>> b62ad1f (Update app UI and layout)
+
+  const selectedItem = visibleContentItems.find((item) => item.id === selectedId) || filteredItems[0] || null;
 
   const handleLogin = (userData) => {
     setUser(userData);
@@ -126,6 +166,7 @@ function App() {
     setShowProfile(false);
   };
 
+<<<<<<< HEAD
   const handleResetFilters = () => {
     setSearch('');
     setFilterTopic('All');
@@ -136,6 +177,22 @@ function App() {
   };
 
   // Read URL query params when navigating from BranchSubjects or shared links
+=======
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsHeaderMinimized(true);
+      } else {
+        setIsHeaderMinimized(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // read query params to set filters when navigating from other pages
+>>>>>>> b62ad1f (Update app UI and layout)
   const location = useLocation();
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -146,20 +203,38 @@ function App() {
     if (branchParam) setFilterBranch(branchParam);
     if (semesterParam) setFilterSemester(semesterParam);
     if (subjectParam) {
+<<<<<<< HEAD
       const item = contentItems.find((i) => i.subject === subjectParam);
       if (item) {
         setFilterTopic(item.topic || 'All');
         setSelectedId(item.id);
       }
+=======
+      setFilterSubject(subjectParam);
+      setFilterTopic('All');
+      const item = contentItems.find(i => i.subject === subjectParam && i.branch === branchParam);
+      if (item) setSelectedId(item.id);
+    }
+    if (semesterParam) {
+      setFilterSemester(semesterParam);
+>>>>>>> b62ad1f (Update app UI and layout)
     }
   }, [location.search]);
 
   return (
+<<<<<<< HEAD
     <div className="app-shell">
       <header className="app-header">
         <div className="header-content">
           <div className="logo-section">
             <img src={logoImg} alt="Khoje Khatam Logo" className="logo" />
+=======
+    <div className="app-shell" data-theme={theme}>
+      <header className={`app-header ${isHeaderMinimized ? 'minimized' : ''}`}>
+        <div className="header-content">
+          <div className="logo-section">
+            <img src={logoPath} alt="Khoje Khatam Logo" className="logo" />
+>>>>>>> b62ad1f (Update app UI and layout)
             <div>
               <p className="eyebrow">khoje khatam &bull; b.tech portal</p>
               <h1>Complete guide to PYQs, notes & tutorials</h1>
@@ -168,12 +243,20 @@ function App() {
           </div>
 
           <div className="header-actions">
+<<<<<<< HEAD
             <button 
               type="button" 
               className="theme-toggle-btn" 
               onClick={toggleTheme}
               title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} Mode`}
               aria-label="Toggle visual theme"
+=======
+            <button
+              type="button"
+              className="theme-toggle"
+              onClick={() => setTheme((currentTheme) => currentTheme === 'light' ? 'dark' : 'light')}
+              aria-label="Toggle light and dark mode"
+>>>>>>> b62ad1f (Update app UI and layout)
             >
               {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
             </button>
@@ -241,6 +324,7 @@ function App() {
         </div>
       </section>
 
+<<<<<<< HEAD
       {/* Quick Subject Badges */}
       <section className="quick-subjects" ref={subjectsRef}>
         <div className="section-title-wrap">
@@ -269,6 +353,8 @@ function App() {
       </section>
 
       {/* Branch Navigation */}
+=======
+>>>>>>> b62ad1f (Update app UI and layout)
       <BranchFilter 
         branches={ALL_BRANCHES}
         selectedBranch={filterBranch}
@@ -290,6 +376,7 @@ function App() {
             onResetFilters={handleResetFilters}
           />
 
+<<<<<<< HEAD
           {/* Active branch / semester filter indicator */}
           {(filterBranch !== 'All' || filterSemester !== 'All') && (
             <div className="active-filter-indicator">
@@ -327,6 +414,11 @@ function App() {
             onSelect={setSelectedId}
             bookmarks={bookmarks}
           />
+=======
+          <div className="recent-subject-box">
+            <span className="recent-subject-label">Recent viewed subject</span>
+          </div>
+>>>>>>> b62ad1f (Update app UI and layout)
         </section>
 
         <section className="content-panel">
@@ -393,6 +485,7 @@ function App() {
             </div>
           </div>
 
+<<<<<<< HEAD
           <div className="footer-section">
             <h4>Semester Updates</h4>
             {newsletterSubscribed ? (
@@ -418,6 +511,15 @@ function App() {
               </form>
             )}
           </div>
+=======
+          {/* <div className="footer-section">
+            <h4>Newsletter</h4>
+            <div className="newsletter-signup">
+              <input type="email" placeholder="Enter your email" className="newsletter-input" />
+              <button className="newsletter-btn">Subscribe</button>
+            </div>
+          </div> */}
+>>>>>>> b62ad1f (Update app UI and layout)
         </div>
 
         <div className="footer-divider"></div>
